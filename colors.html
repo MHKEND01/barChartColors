@@ -1,9 +1,41 @@
 <html>
 <head>
-    <script src="//d3js.org/d3.v5.min.js" charset="utf-8"></script>
-  <script src="colors.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="colors_csv.js"></script>
+  <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<svg></svg>
+  <div class="content">
+    <svg class="graph"></svg>
+    <svg class="legend">
+  </div>
+  <form>
+    Select a new color and its number to add:
+    <input type="color" name="favcolor" value="#ff0000">
+    <input type="" name="" value="">
+    <select name='number'>
+    	<option title='1' value='1'>1</option>
+    	<option title='2' value='2'>2</option>
+    	<option title='3' value='3'>3</option>
+    	<option title='4' value='4'>4</option>
+    	<option title='5' value='5'>5</option>
+    	<option title='6' value='6'>6</option>
+    	<option title='7' value='7'>7</option>
+    	<option title='8' value='8'>8</option>
+    	<option title='9' value='9'>9</option>
+    	<option title='10' value='10'>10</option>
+    	<option title='11' value='11'>11</option>
+    	<option title='12' value='12'>12</option>
+    	<option title='13' value='13'>13</option>
+    	<option title='14' value='14'>14</option>
+    	<option title='15' value='15'>15</option>
+    	<option title='16' value='16'>16</option>
+    	<option title='17' value='17'>17</option>
+    	<option title='18' value='18'>18</option>
+    	<option title='19' value='19'>19</option>
+    	<option title='20' value='20'>20</option>
+    </select>
+    <input type="submit">
+  </form>
 </body>
 </html>
