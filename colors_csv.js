@@ -110,7 +110,10 @@ legend.selectAll("text")
 .attr("font-size", "15px")
 }
 
-
+var dataTracker = [];
+d3.csv("data.csv").then(function(data){
+  dataTracker = data;
+});
 //Event listener settings
 var addData = function(){
   console.log("Clicked");
@@ -125,11 +128,10 @@ var addData = function(){
   d3.select(".graph").remove();
 
   d3.select(".legend").remove();
-  d3.csv("data.csv").then(function(data){
-    console.log("RAW data:", data);
-    data.push(newObj);
-    console.log("New data", data);
-    drawChart(data);
-  })
+  console.log("Tracker:", dataTracker);
+
+    dataTracker.push(newObj);
+    console.log("New data", dataTracker);
+    drawChart(dataTracker);
 
 }

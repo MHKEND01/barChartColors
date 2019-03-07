@@ -2,16 +2,22 @@ var dataP = d3.json("colors.json");
 
 var drawChart = function(data)
 {
-  var width = 400;
-  var height = 200;
+  console.log("Drawing chart of", data);
+  d3.selectAll("#add")
+      .on("onclick", function(d,i) {
+         window.alert("click");
+       });
+
+  var width = 500;
+  var height = 300;
   var barWidth = width/data.length;
 
-  var svg = d3.select("body > .content")
+  var graph_svg = d3.select("body > .content")
               .append("svg")
               .attr("class", "graph")
               .attr("width", width)
               .attr("height",height);
-  svg.selectAll("rect")
+  graph_svg.selectAll("rect")
       .data(data)
       .enter()
       .append("rect")
@@ -22,7 +28,6 @@ var drawChart = function(data)
     })
     .attr("y",function(d)
     {
-
     return height - d.num*10;
   }
   )
@@ -30,7 +35,7 @@ var drawChart = function(data)
   .attr("height", function(d){return d.num*10})
   .attr("fill",function(d){return d.color;})
 
-  svg.selectAll("text")
+  graph_svg.selectAll("text")
       .data(data)
       .enter()
       .append("text")
@@ -50,12 +55,17 @@ var drawChart = function(data)
   .attr("font-size", "20px")
   .attr("fill", "white")
 
-
-  var legend = svg.select("body > .content")
+  //Legend settings
+  var legend = d3.select("body > .content")
               .append("svg")
               .attr("class", "legend")
               .attr("width", width/2)
               .attr("height", height)
+
+  var legend = d3.select(".legend").append("g")
+    .attr("x", 10)
+    .attr("y", 10)
+    .style("font-size","12px")
 
 legend.selectAll("rect")
     .data(data)
@@ -69,7 +79,7 @@ legend.selectAll("rect")
   .attr("y",function(d,i)
   {
 
-  return  40*i;
+  return  20*i;
 })
 .attr("width", 20)
 .attr("height", 10)
@@ -88,12 +98,11 @@ legend.selectAll("text")
   .attr("y",function(d,i)
   {
 
-  return (40*i) +10;
+  return (20*i) +10;
 }
 )
 .attr("font-family", "sans-serif")
 .attr("font-size", "15px")
-
 }
 
 dataP.then(function(data)
