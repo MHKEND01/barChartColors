@@ -6,7 +6,9 @@ var drawChart = function(data)
   var height = 200;
   var barWidth = width/data.length;
 
-  var svg = d3.select("svg")
+  var svg = d3.select("body > .content")
+              .append("svg")
+              .attr("class", "graph")
               .attr("width", width)
               .attr("height",height);
   svg.selectAll("rect")
@@ -48,13 +50,12 @@ var drawChart = function(data)
   .attr("font-size", "20px")
   .attr("fill", "white")
 
-  var legend = svg.append("g")
-    .attr("class","legend")
-    .attr("x", 10)
-    .attr("y", 10)
-    .style("font-size","12px")
-    .attr("width", 50)
-    .attr("height", 20)
+
+  var legend = svg.select("body > .content")
+              .append("svg")
+              .attr("class", "legend")
+              .attr("width", width/2)
+              .attr("height", height)
 
 legend.selectAll("rect")
     .data(data)
@@ -99,7 +100,6 @@ dataP.then(function(data)
 {
   drawChart(data);
 console.log("data",data);
-
 },
 function(err)
 {

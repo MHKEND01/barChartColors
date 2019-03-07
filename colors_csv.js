@@ -1,15 +1,25 @@
 //var dataP = d3.json("colors.json");
+
 var dataP = d3.csv("data.csv").then(function(data) {
   drawChart(data);
+  console.log("color data:", data);
 });
 
 var drawChart = function(data)
 {
+  console.log("Drawing chart of", data);
+  d3.selectAll("#add")
+      .on("onclick", function(d,i) {
+         window.alert("click");
+       });
+
   var width = 500;
   var height = 300;
   var barWidth = width/data.length;
 
-  var graph_svg = d3.select(".graph")
+  var graph_svg = d3.select("body > .content")
+              .append("svg")
+              .attr("class", "graph")
               .attr("width", width)
               .attr("height",height);
   graph_svg.selectAll("rect")
@@ -51,9 +61,11 @@ var drawChart = function(data)
   .attr("fill", "white")
 
   //Legend settings
-  var legend = d3.select(".legend")
-    .attr("width", width/2)
-    .attr("height", height)
+  var legend = d3.select("body > .content")
+              .append("svg")
+              .attr("class", "legend")
+              .attr("width", width/2)
+              .attr("height", height)
 
   var legend = d3.select(".legend").append("g")
     .attr("x", 10)
@@ -96,4 +108,28 @@ legend.selectAll("text")
 )
 .attr("font-family", "sans-serif")
 .attr("font-size", "15px")
+}
+
+
+//Event listener settings
+var addData = function(){
+  console.log("Clicked");
+  var color = document.getElementById("newColor").value;
+  var num = document.getElementById("newNum").value;
+  var newObj = {}
+  newObj["color"] = color;
+  newObj["num"] = num;
+  console.log(newObj);
+  console.log("Darap", dataP)
+  d3.select(".graph").remove();
+  d3.select(".graph").remove();
+
+  d3.select(".legend").remove();
+  d3.csv("data.csv").then(function(data){
+    console.log("RAW data:", data);
+    data.push(newObj);
+    console.log("New data", data);
+    drawChart(data);
+  })
+
 }

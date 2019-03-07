@@ -6,14 +6,11 @@
 </head>
 <body>
   <div class="content">
-    <svg class="graph"></svg>
-    <svg class="legend">
   </div>
-  <form>
+  <form onsubmit="return false">
     Select a new color and its number to add:
-    <input type="color" name="favcolor" value="#ff0000">
-    <input type="" name="" value="">
-    <select name='number'>
+    <input type="color" name="favcolor" id="newColor" value="#ff0000">
+    <select name='number' id="newNum">
     	<option title='1' value='1'>1</option>
     	<option title='2' value='2'>2</option>
     	<option title='3' value='3'>3</option>
@@ -35,7 +32,7 @@
     	<option title='19' value='19'>19</option>
     	<option title='20' value='20'>20</option>
     </select>
-    <input type="submit">
+    <button id="add" onclick="addData()">Add</button>
   </form>
 </body>
 </html>
